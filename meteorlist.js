@@ -11,11 +11,21 @@ if (Meteor.isClient) {
     });
   }
 
-  Template.home.events({
-    'click input': function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+  Template.post.events({
+    'submit form': function (e) {
+      e.preventDefault();
+
+      var item = {
+        title: $(e.target).find('[name=title]').val(),
+        price: $(e.target).find('[name=price]').val(),
+        description: $(e.target).find('[name=description]').val()
+      }
+      console.log(item);
+  
+      if(item["title"].trim() != ""){
+        Posts.insert(item);
+        Router.go('home');
+      }
     }
   });
 }
