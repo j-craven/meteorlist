@@ -2,17 +2,25 @@
   <title>meteorlist</title>
 </head>
 
-<template name="home">
+<template name="layout">
     <div class="container">
-        {{> navbar}}
-        <div class="row col-md-10 col-md-offset-1">
-        {{#each allPosts}}
-            <div class="well well-sm">
-            <p><strong>{{title}}</strong><span class="pull-right">${{price}}</span></p>
-            <p>{{description}}</p>
-            </div>
-        {{/each}}
+        <header>
+            {{> navbar}}
+        </header>
+        <div id="main">
+            {{> yield}}
         </div>
+    </div>
+</template>
+
+<template name="home">
+    <div class="row col-md-10 col-md-offset-1">
+    {{#each allPosts}}
+        <div class="well well-sm">
+        <p><strong>{{title}}</strong><span class="pull-right">${{price}}</span></p>
+        <p>{{description}}</p>
+        </div>
+    {{/each}}
     </div>
 </template>
 
